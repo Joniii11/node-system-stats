@@ -1,31 +1,31 @@
 {
-  "compilerOptions": {
-    // Modules
-		"module": "CommonJS",
-		"moduleResolution": "Node",
-		"resolveJsonModule": true,
-
-  "target": "ES2015",
-  "rootDir": "./src/",
-  "outDir": "./dist/",
-  "strict": true,
-  "declaration": true,
-  "removeComments": false,
-  "esModuleInterop": true,
-  "allowSyntheticDefaultImports": true,
-  "sourceMap": false,
-  "baseUrl": "./",
-  "typeRoots": [
-    "./node_modules/@types"
-  ]
-  },
-  "include": [
-    "./src/**/*",
-    "src/types/types.d.ts", "test",
-  ],
-  "exclude": [
-  "node_modules",
-  "dist",
-  "test"
-  ]
-}
+    "compilerOptions": {
+      // Modules
+          "module": "CommonJS",
+          "moduleResolution": "Node",
+          "resolveJsonModule": true,
+  
+    "target": "ES2015",
+    "rootDir": "./src/",
+    "outDir": "./dist/",
+    "strict": true,
+    "declaration": true,
+    "removeComments": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "sourceMap": false,
+    "baseUrl": "./",
+    "typeRoots": [
+      "./node_modules/@types"
+    ]
+    },
+    "include": [
+      "./src/**/*",
+      "src/types/types.d.ts", "test",
+    ],
+    "exclude": [
+    "node_modules",
+    "dist",
+    "test"
+    ]
+  }

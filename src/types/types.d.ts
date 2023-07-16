@@ -19,20 +19,16 @@ export interface IOptsInternal {
     sampleMs: number;
 }
 
-export interface ICallbackReturn {
-    /**
-     * The percentage of the CPU Utilization of the process.
-     */
-    percent: number;
-
-    /**
-     * The time of how long it measured the CPU Utlization of the process.
-     */
-    seconds: number;
-}
-
 export interface ICallback {
-    ( percent: number, seconds: number ): ICallbackReturn | void;
+        /**
+         * The percentage of the CPU Utilization of the process.
+         */
+        percent: number;
+
+        /**
+         * The time of how long it measured the CPU Utlization of the process.
+         */
+        seconds?: number;
 }
 
 export type clockMHzType = number;

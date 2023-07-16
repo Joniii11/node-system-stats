@@ -1,14 +1,33 @@
 {
   "name": "node-system-stats",
-  "version": "1.1.0",
+  "version": "1.2.2",
+  "private": false,
   "description": "This package shows you the system statistics, with wonderful type declartions.",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "files": [
-    "/dist"
+    "./lib"
   ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Joniii11/node-system-stats"
+  },
+  "bugs": {
+    "type": "git",
+    "url": "https://github.com/Joniii11/node-system-stats/issues"
+  },
+  "keywords": [
+    "systemstats",
+    "cpu",
+    "metrics",
+    "info"
+  ],
+  "readmeFilename": "readme.md",
   "devDependencies": {
     "@types/node": "^20.4.2"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "typedoc": "^0.24.8"
+  }
 }

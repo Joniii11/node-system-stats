@@ -12,7 +12,7 @@ export interface IOptsInput {
      * @default 1000 yes
      */
     sampleMs?: number;
-};
+}
 
 export interface IOptsInternal {
     coreIndex: number;

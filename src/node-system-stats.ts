@@ -14,33 +14,19 @@ export function usagePercent(cb: ICallback, optsInput?: IOptsInput) {
     sampleMs: optsInput?.sampleMs || 1000,
   };
 
-  const factor = Math.pow(10, 2);
-
   let timeUsed: number;
-  var timeUsed0 = 0;
-  var timeUsed1 = 0;
+  let timeUsed0 = 0;
+  let timeUsed1 = 0;
 
-  var timeIdle: number;
-  var timeIdle0 = 0;
-  var timeIdle1 = 0;
+  let timeIdle: number;
+  let timeIdle0 = 0;
+  let timeIdle1 = 0;
 
   let cpus = os.cpus();
   let cpu1: os.CpuInfo[];
   let cpu0: os.CpuInfo[];
 
   let time: [number, number];
-
-  //opts is optional
-  if (typeof opts === "function") {
-    cb = opts;
-    opts = {
-      coreIndex: -1,
-      sampleMs: 1000,
-    };
-  } else {
-    opts.coreIndex = opts.coreIndex || -1;
-    opts.sampleMs = opts.sampleMs || 1000;
-  }
 
   //check core exists
   if (
@@ -62,18 +48,18 @@ export function usagePercent(cb: ICallback, optsInput?: IOptsInput) {
       //take second measurement
       cpu1 = os.cpus();
 
-      var diff = process.hrtime(time);
-      var diffSeconds = diff[0] + diff[1] * 1e-9;
+      let diff = process.hrtime(time);
+      let diffSeconds = diff[0] + diff[1] * 1e-9;
 
       //do the number crunching below and return
-      for (var i = 0; i < cpu1.length; i++) {
+      for (let i = 0; i < cpu1.length; i++) {
         timeUsed1 += cpu1[i].times.user;
         timeUsed1 += cpu1[i].times.nice;
         timeUsed1 += cpu1[i].times.sys;
         timeIdle1 += cpu1[i].times.idle;
       }
 
-      for (i = 0; i < cpu0.length; i++) {
+      for (let i = 0; i < cpu0.length; i++) {
         timeUsed0 += cpu0[i].times.user;
         timeUsed0 += cpu0[i].times.nice;
         timeUsed0 += cpu0[i].times.sys;
@@ -83,7 +69,7 @@ export function usagePercent(cb: ICallback, optsInput?: IOptsInput) {
       timeUsed = timeUsed1 - timeUsed0;
       timeIdle = timeIdle1 - timeIdle0;
 
-      var percent = (timeUsed / (timeUsed + timeIdle)) * 100;
+      let percent = (timeUsed / (timeUsed + timeIdle)) * 100;
 
       return cb(_roundTo(percent, 3), Math.floor(diffSeconds));
     }, opts.sampleMs);
@@ -98,8 +84,8 @@ export function usagePercent(cb: ICallback, optsInput?: IOptsInput) {
       //take second measurement
       cpu1 = os.cpus();
 
-      var diff = process.hrtime(time);
-      var diffSeconds = diff[0] + diff[1] * 1e-9;
+      let diff = process.hrtime(time);
+      let diffSeconds = diff[0] + diff[1] * 1e-9;
 
       //do the number crunching below and return
       timeUsed1 += cpu1[opts.coreIndex].times.user;
@@ -112,10 +98,10 @@ export function usagePercent(cb: ICallback, optsInput?: IOptsInput) {
       timeUsed0 += cpu0[opts.coreIndex].times.sys;
       timeIdle0 += cpu0[opts.coreIndex].times.idle;
 
-      var timeUsed = timeUsed1 - timeUsed0;
-      var timeIdle = timeIdle1 - timeIdle0;
+      let timeUsed = timeUsed1 - timeUsed0;
+      let timeIdle = timeIdle1 - timeIdle0;
 
-      var percent = (timeUsed / (timeUsed + timeIdle)) * 100;
+      let percent = (timeUsed / (timeUsed + timeIdle)) * 100;
 
       return cb(_roundTo(percent, 3), Math.floor(diffSeconds));
     }, opts.sampleMs);
@@ -136,7 +122,7 @@ export function totalCores() {
  * @returns A number of the speed of the core OR a array with all of the cores speeds.
  */
 export function clockMHz(coreIndex?: clockMHzType) {
-  var cpus = os.cpus();
+  let cpus = os.cpus();
 
   if (!coreIndex) {
     return cpus.map((cpus) => cpus.speed);
@@ -160,14 +146,14 @@ export function clockMHz(coreIndex?: clockMHzType) {
  * @returns
  */
 export function avgClockMHz() {
-  var cpus = os.cpus();
-  var totalHz = 0;
+  let cpus = os.cpus();
+  let totalHz = 0;
 
   for (let i = 0; i < cpus.length; i++) {
     totalHz += cpus[i].speed;
   }
 
-  var avgHz = totalHz / cpus.length;
+  let avgHz = totalHz / cpus.length;
   return avgHz;
 }
 
@@ -212,7 +198,7 @@ function _error(coreIndex: number, cores: number): Error {
  * @returns
  */
 function _roundTo(n: number, digits: number) {
-  var negative = false;
+  let negative = false;
   if (digits === undefined) {
     digits = 0;
   }
@@ -220,7 +206,7 @@ function _roundTo(n: number, digits: number) {
     negative = true;
     n = n * -1;
   }
-  var multiplicator = Math.pow(10, digits);
+  let multiplicator = Math.pow(10, digits);
   n = parseFloat((n * multiplicator).toFixed(11));
   n = parseFloat((Math.round(n) / multiplicator).toFixed(digits));
   if (negative) {

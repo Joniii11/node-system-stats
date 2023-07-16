@@ -1,22 +1,27 @@
 {
   "compilerOptions": {
+    // Modules
+		"module": "ESNext",
+		"moduleResolution": "bundler",
+		"resolveJsonModule": true,
+
   "target": "ES2015",
-  "module": "commonjs",
   "rootDir": "./src/",
   "outDir": "./dist/",
   "strict": true,
-  "moduleResolution": "node",
+  "declaration": true,
+  "removeComments": false,
   "esModuleInterop": true,
   "allowSyntheticDefaultImports": true,
   "sourceMap": false,
   "baseUrl": "./",
   "typeRoots": [
-    "./src/types",
     "./node_modules/@types"
   ]
   },
   "include": [
-    "src/**/*"
+    "./src/**/*",
+    "src/types/types.d.ts",
   ],
   "exclude": [
   "node_modules",

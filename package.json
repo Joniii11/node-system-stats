@@ -11,7 +11,7 @@
     "@types/node": "^20.4.2"
   },
   "dependencies": {
-    "ts-node": "^10.9.1",
-    "tsc": "^2.0.4"
-  }
+    "ts-node": "^10.9.1"
+  },
+  "license": "MIT"
 }

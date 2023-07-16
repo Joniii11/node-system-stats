@@ -18,20 +18,18 @@ To measure the cpu Usage in percent, you can use this function below. Parameter 
 
 By default you can use it like that:
 ```js
-// TypeScript: import { usagePercent } from "node-system-stats
+// TypeScript: import { usagePercent } from "node-system-stats";
 const { usagePercent } = require("node-system-stats")
 
-cpuStat.usagePercent(function(err, percent, seconds) {
-    if (err) {
-      return console.log(err);
-    }
+let result = {}; 
 
-    // the percentage cpu usage over all cores
-    console.log(percent);
+try {
+    result = await usagePercent()
+} catch (err) {
+    console.log(err)
+}
 
-    // the approximate number of seconds the sample was taken over
-    console.log(seconds);
-});
+console.log(result); // Output: { percent: 1.5, seconds: 1}
 ```
 
 Get the cpu usage percent for core 0 over a sample period of 2000ms:
@@ -39,17 +37,15 @@ Get the cpu usage percent for core 0 over a sample period of 2000ms:
 // TypeScript: import { usagePercent } from "node-system-stats"
 const { usagePercent } = require("node-system-stats");
 
+let result = {};
+
 try {
-    usagePercent(function(percent, seconds) {
-    console.log(percent); // Output: 0.65
-    console.log(percent); // Output: 1 
-}, { // You don't need to include this if you don't want to change some things
-    coreIndex: 0 // Standart is -1 to measure the average on all cores. 
-    sampleMs: 2000 // Standart is 1000ms (1s)
-});
+    result = await usagePercent({ coreIndex: 0, sampleMs: 2000 })
 } catch (err) {
-    console.log(err); // Errors can occur if you set the parameter coreIndex higher then your amount of cores.
-};
+    console.log(err);
+}
+
+console.log(result);
 ```
 
 To get all of the cores, you can use this function below. View [here](https://joniii11.github.io/node-system-stats/functions/totalCores.html) for more description.

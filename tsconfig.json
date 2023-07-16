@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
     // Modules
-		"module": "ESNext",
-		"moduleResolution": "bundler",
+		"module": "CommonJS",
+		"moduleResolution": "Node",
 		"resolveJsonModule": true,
 
   "target": "ES2015",
@@ -21,10 +21,11 @@
   },
   "include": [
     "./src/**/*",
-    "src/types/types.d.ts",
+    "src/types/types.d.ts", "test",
   ],
   "exclude": [
   "node_modules",
-  "dist"
+  "dist",
+  "test"
   ]
 }

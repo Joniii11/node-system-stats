@@ -71,7 +71,7 @@ export function usagePercent(cb: ICallback, optsInput?: IOptsInput) {
 
       let percent = (timeUsed / (timeUsed + timeIdle)) * 100;
 
-      return cb(_roundTo(percent, 3), Math.floor(diffSeconds));
+      return cb(_roundTo(percent, 2), Math.floor(diffSeconds));
     }, opts.sampleMs);
 
     //only one cpu core
@@ -103,7 +103,7 @@ export function usagePercent(cb: ICallback, optsInput?: IOptsInput) {
 
       let percent = (timeUsed / (timeUsed + timeIdle)) * 100;
 
-      return cb(_roundTo(percent, 3), Math.floor(diffSeconds));
+      return cb(_roundTo(percent, 2), Math.floor(diffSeconds));
     }, opts.sampleMs);
   }
 }

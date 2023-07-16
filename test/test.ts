@@ -1,1 +1,0 @@
-import { cpuUsage } from "../dist/index";

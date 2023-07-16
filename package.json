@@ -1,0 +1,17 @@
+{
+  "name": "node-system-stats",
+  "version": "1.1.0",
+  "description": "This package shows you the system statistics, with wonderful type declartions.",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "devDependencies": {
+    "@types/node": "^20.4.2"
+  },
+  "dependencies": {
+    "ts-node": "^10.9.1",
+    "tsc": "^2.0.4"
+  }
+}

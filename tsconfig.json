@@ -21,7 +21,7 @@
     },
     "include": [
       "./src/**/*",
-      "src/types/types.d.ts", "test",
+      "src/types/types.d.ts"
     ],
     "exclude": [
     "node_modules",

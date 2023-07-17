@@ -26,6 +26,9 @@
   "devDependencies": {
     "@types/node": "^20.4.2"
   },
+  "publishConfig": {
+     "registry": "https://npm.pkg.github.com"
+   },
   "license": "MIT",
   "dependencies": {
     "typedoc": "^0.24.8"

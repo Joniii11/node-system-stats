@@ -21,7 +21,7 @@ By default you can use it like that:
 // TypeScript: import { usagePercent } from "node-system-stats";
 const { usagePercent } = require("node-system-stats")
 
-let result = {}; 
+let result = { percent: 0 };
 
 try {
     result = await usagePercent()
@@ -37,7 +37,7 @@ Get the cpu usage percent for core 0 over a sample period of 2000ms:
 // TypeScript: import { usagePercent } from "node-system-stats"
 const { usagePercent } = require("node-system-stats");
 
-let result = {};
+let result = { percent: 0 };
 
 try {
     result = await usagePercent({ coreIndex: 0, sampleMs: 2000 })

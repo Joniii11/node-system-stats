@@ -1,15 +1,21 @@
 import os from "os";
 
 import { measureCPUMulti, measureCPUSingle } from "./utils/utils";
-import { IOptsInput, IOptsInternal, clockMHzType, MemoryUsageReturn } from "./types/types";
+import {
+  IOptsInput,
+  ICallback,
+  IOptsInternal,
+  clockMHzType,
+  MemoryUsageReturn,
+} from "./types/types";
 
 /* PUBLIC */
 /**
  * This function measures the CPU usage
- * @param optsInput The options input
- * @returns returns a resolvable promise
+ * @param {IOptsInput} optsInput The options input
+ * @returns {Promise<ICallback>} returns a resolvable promise
  */
-export async function usagePercent(optsInput?: IOptsInput) {
+export async function usagePercent(optsInput?: IOptsInput): Promise<ICallback> {
   let opts: IOptsInternal = {
     coreIndex: optsInput?.coreIndex || -1,
     sampleMs: optsInput?.sampleMs || 1000,
@@ -40,18 +46,18 @@ export async function usagePercent(optsInput?: IOptsInput) {
 
 /**
  * This function shows all Cores that are available in your system
- * @returns The number of total cores in the system.
+ * @returns {number} The number of total cores in the system.
  */
-export function totalCores() {
+export function totalCores(): number {
   return os.cpus().length;
 }
 
 /**
  * This function returns the speed of all cores or only just the selected core.
- * @param coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
- * @returns A number of the speed of the core OR a array with all of the cores speeds.
+ * @param {clockMHzType} coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
+ * @returns {number | number[]} A number of the speed of the core OR a array with all of the cores speeds.
  */
-export function clockMHz(coreIndex?: clockMHzType) {
+export function clockMHz(coreIndex?: clockMHzType): number | number[] {
   let cpus = os.cpus();
 
   if (!coreIndex) {
@@ -73,9 +79,9 @@ export function clockMHz(coreIndex?: clockMHzType) {
 
 /**
  * This function shows the average Clock Frequency from all of the cores.
- * @returns
+ * @returns {number} returns a number with the average Clock MHz over all cores
  */
-export function avgClockMHz() {
+export function avgClockMHz(): number {
   let cpus = os.cpus();
   let totalHz = 0;
 
@@ -89,19 +95,39 @@ export function avgClockMHz() {
 
 /**
  * Shows the formmated Memory Usage information
- * @returns {MemoryUsageReturn} An object with every converted redable form.
+ * @returns {MemoryUsageReturn} An object with every converted memory usage type in redable form.
  */
 export function showMemoryUsage(): MemoryUsageReturn {
+  // Initializing variables
   const mUV = process.memoryUsage();
+  const dataKeys = [
+    "rss",
+    "heapTotal",
+    "heapUsed",
+    "external",
+    "arrayBuffers",
+  ] as const;
 
-  // If somebody finds a better solution of doing this, then please make a PR. Because i don't know any better solution currently.
-  return {
-    rss: Math.round((mUV.rss / 1024 / 1024) * 100) / 100,
-    heapTotal: Math.round((mUV.heapTotal / 1024 / 1024) * 100) / 100,
-    heapUsed: Math.round((mUV.heapUsed / 1024 / 1024) * 100) / 100,
-    external: Math.round((mUV.external / 1024 / 1024) * 100) / 100,
-    arrayBuffers: Math.round((mUV.arrayBuffers / 1024 / 1024) * 100) / 100
-  } as MemoryUsageReturn;
+  // Using reduce to "map" out the memory usage.
+  return dataKeys.reduce((acc, cur) => {
+    acc[cur] = Math.round((mUV[cur] / 1024 / 1024) * 100) / 100;
+    return acc;
+  }, {} as MemoryUsageReturn);
+};
+
+/**
+ * This function is used to display the total memory that the system has. It can output in Gigabyte and Megabyte.
+ * @param {boolean?} convertedGB If the returned value should be in Gigabytes or in MB. If set to true, then it will output the Gigabyte value.
+ * @default {false} Megabyte format.
+ * 
+ * @returns {number} The converted total Memory that is available.
+ */
+export function showTotalMemory(convertedGB: boolean = false): number {
+  // In GB
+  if (convertedGB) return Math.round(((os.totalmem() / 1024 / 1024) * 100) / 100) / 1000;
+  
+  // In MB
+  return Math.round((os.totalmem() / 1024 / 1024) * 100) / 100;
 };
 
 /* PRIVATE */
@@ -109,19 +135,14 @@ export function showMemoryUsage(): MemoryUsageReturn {
  * This function thros a new error for the specific error when you specify a higher core count then you have in your system.
  *
  * @PRIVATE This is a private function, that you will never need to call nor use in your Code Base
- * @param coreIndex
- * @param cores
+ * @param {number} coreIndex
+ * @param {number} cores
+ * @returns {Error} A throwable new Error
  */
 function _error(coreIndex: number, cores: number): Error {
   throw new Error(
-    '[cpu-stats] Error: Core "' +
-      coreIndex +
-      '" not found, use one of ' +
-      "[0, " +
-      (cores - 1) +
-      "], " +
-      "since your system has a total of " +
-      cores +
-      " cores."
+    `[node-system-stats] Error: Core ${coreIndex} not found. Use on of these cores [0, ${
+      cores - 1
+    }], since your system has a total of ${cores} cores.`
   );
-}
+};

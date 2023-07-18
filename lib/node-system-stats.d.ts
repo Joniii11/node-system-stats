@@ -60,31 +60,38 @@ export interface MemoryUsageReturn {
 
 export type clockMHzType = number;
 
-
 /**
  * This function measures the CPU usage
- * @param optsInput The options input
- * @returns returns a resolvable promise
+ * @param {IOptsInput} optsInput The options input
+ * @returns {Promise<ICallback>} returns a resolvable promise
  */
 export declare function usagePercent(optsInput?: IOptsInput): Promise<ICallback>;
 /**
  * This function shows all Cores that are available in your system
- * @returns The number of total cores in the system.
+ * @returns {number} The number of total cores in the system.
  */
 export declare function totalCores(): number;
 /**
  * This function returns the speed of all cores or only just the selected core.
- * @param coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
- * @returns A number of the speed of the core OR a array with all of the cores speeds.
+ * @param {clockMHzType} coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
+ * @returns {number | number[]} A number of the speed of the core OR a array with all of the cores speeds.
  */
 export declare function clockMHz(coreIndex?: clockMHzType): number | number[];
 /**
  * This function shows the average Clock Frequency from all of the cores.
- * @returns
+ * @returns {number} returns a number with the average Clock MHz over all cores
  */
 export declare function avgClockMHz(): number;
 /**
  * Shows the formmated Memory Usage information
- * @returns {MemoryUsageReturn} An object with every converted redable form.
+ * @returns {MemoryUsageReturn} An object with every converted memory usage type in redable form.
  */
 export declare function showMemoryUsage(): MemoryUsageReturn;
+/**
+ * This function is used to display the total memory that the system has. It can output in Gigabyte and Megabyte.
+ * @param {boolean?} convertedGB If the returned value should be in Gigabytes or in MB. If set to true, then it will output the Gigabyte value.
+ * @default {false} Megabyte format.
+ *
+ * @returns {number} The converted total Memory that is available.
+ */
+export declare function showTotalMemory(convertedGB?: boolean): number;

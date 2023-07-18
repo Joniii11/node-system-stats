@@ -1,7 +1,7 @@
 import os from "os";
 
 import { measureCPUMulti, measureCPUSingle } from "./utils/utils";
-import { IOptsInput, IOptsInternal, clockMHzType } from "./types/types";
+import { IOptsInput, IOptsInternal, clockMHzType, MemoryUsageReturn } from "./types/types";
 
 /* PUBLIC */
 /**
@@ -89,13 +89,20 @@ export function avgClockMHz() {
 
 /**
  * Shows the formmated Memory Usage information
- * @returns
+ * @returns {MemoryUsageReturn} An object with every converted redable form.
  */
-export function showMemoryUsage(): string {
-  return `${
-    Math.round((process.memoryUsage().heapUsed / 1024 / 1024) * 100) / 100
-  } MB`;
-}
+export function showMemoryUsage(): MemoryUsageReturn {
+  const mUV = process.memoryUsage();
+
+  // If somebody finds a better solution of doing this, then please make a PR. Because i don't know any better solution currently.
+  return {
+    rss: Math.round((mUV.rss / 1024 / 1024) * 100) / 100,
+    heapTotal: Math.round((mUV.heapTotal / 1024 / 1024) * 100) / 100,
+    heapUsed: Math.round((mUV.heapUsed / 1024 / 1024) * 100) / 100,
+    external: Math.round((mUV.external / 1024 / 1024) * 100) / 100,
+    arrayBuffers: Math.round((mUV.arrayBuffers / 1024 / 1024) * 100) / 100
+  } as MemoryUsageReturn;
+};
 
 /* PRIVATE */
 /**

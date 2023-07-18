@@ -1,6 +1,6 @@
 {
   "name": "node-system-stats",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "description": "This package shows you the system statistics, with wonderful type declartions.",
   "main": "lib/index.js",
@@ -20,7 +20,17 @@
     "systemstats",
     "cpu",
     "metrics",
-    "info"
+    "info",
+    "stats",
+    "statistics",
+    "usage",
+    "percentage",
+    "percent",
+    "cores",
+    "mhz",
+    "clock",
+    "speed",
+    "memory"
   ],
   "readmeFilename": "readme.md",
   "devDependencies": {

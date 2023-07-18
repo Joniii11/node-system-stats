@@ -92,6 +92,17 @@ const { showMemoryUsage } = require("node-system-stats");
 console.log(showMemoryUsage()); // Output: 100 MB 
 ```
 
+If you want to get your total system memory formatted already. Then this function below you will help you alot. You can find the Documentation for this function [here](https://joniii11.github.io/node-system-stats/functions/showTotalMemory.html)
+```js
+// TypeScript: import { showTotalMemory } from "node-system-stats";
+const { showTotalMemory } = require("node-system-stats");
+
+console.log(showTotalMemory()); // Output: 16270.52 and that stands for 16 GB of memory.
+
+// If you want to get the Total Memory in Gigabyte use it like that below:
+console.log(showTotalMemory(true)); // Output: 16.271, and that stands for 16 GB of memory aswell.
+```
+
 ## Contributing
 If you wish to contribute to the Node-System-Stats codebase or documentation, feel free to fork the repository and submit a
 pull request. We use ESLint to enforce a consistent coding style, so having that set up in your editor of choice

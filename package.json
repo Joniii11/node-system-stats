@@ -1,6 +1,6 @@
 {
   "name": "node-system-stats",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "private": false,
   "description": "This package shows you the system statistics, with wonderful type declartions.",
   "main": "lib/index.js",

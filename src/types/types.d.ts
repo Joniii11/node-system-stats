@@ -58,4 +58,23 @@ export interface MemoryUsageReturn {
     arrayBuffers: number;
 }
 
-export type clockMHzType = number;
+interface pJsonRepo {
+    type: string;
+    url: string;
+}
+
+export interface pJSON {
+    name: string;
+    version: string;
+    private: boolean;
+    description: string;
+    main: string;
+    types: string;
+    files: string[];
+    repository: pJsonRepo;
+    bugs: pJsonRepo;
+    keywords: string[];
+    readmeFilename: string;
+    devDependencies: Object;
+    license: string;
+}

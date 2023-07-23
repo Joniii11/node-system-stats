@@ -1,12 +1,12 @@
 import os from "os";
-
 import { measureCPUMulti, measureCPUSingle } from "./utils/utils";
+var packageJsonFile: pJSON = require("../package.json");
 import {
   IOptsInput,
   ICallback,
   IOptsInternal,
-  clockMHzType,
   MemoryUsageReturn,
+  pJSON,
 } from "./types/types";
 
 /* PUBLIC */
@@ -45,19 +45,26 @@ export async function usagePercent(optsInput?: IOptsInput): Promise<ICallback> {
 }
 
 /**
- * This function shows all Cores that are available in your system
  * @returns {number} The number of total cores in the system.
  */
-export function totalCores(): number {
-  return os.cpus().length;
-}
+export const totalCores = os.cpus().length;
+
+/**
+ * @returns {string} The name of the cpu in your system.
+ */
+export const cpuModel = os.cpus()[0]!.model;
+
+/**
+ * @returns {string} Returns the current version of the package
+ */
+export const version = packageJsonFile.version;
 
 /**
  * This function returns the speed of all cores or only just the selected core.
- * @param {clockMHzType} coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
+ * @param {number} coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
  * @returns {number | number[]} A number of the speed of the core OR a array with all of the cores speeds.
  */
-export function clockMHz(coreIndex?: clockMHzType): number | number[] {
+export function clockMHz(coreIndex?: number): number | number[] {
   let cpus = os.cpus();
 
   if (!coreIndex) {
@@ -68,13 +75,16 @@ export function clockMHz(coreIndex?: clockMHzType): number | number[] {
   if (
     coreIndex < 0 ||
     coreIndex >= cpus.length ||
-    typeof coreIndex !== "number" ||
     Math.abs(coreIndex % 1) !== 0
   ) {
     _error(coreIndex, cpus.length);
   }
 
-  return cpus[coreIndex].speed;
+  if (typeof coreIndex !== "number") {
+    throw new Error("[node-system-stats] coreIndex must be a number.");
+  };
+
+  return cpus[coreIndex]!.speed;
 }
 
 /**
@@ -86,7 +96,7 @@ export function avgClockMHz(): number {
   let totalHz = 0;
 
   for (let i = 0; i < cpus.length; i++) {
-    totalHz += cpus[i].speed;
+    totalHz += cpus[i]!.speed;
   }
 
   let avgHz = totalHz / cpus.length;
@@ -113,22 +123,23 @@ export function showMemoryUsage(): MemoryUsageReturn {
     acc[cur] = Math.round((mUV[cur] / 1024 / 1024) * 100) / 100;
     return acc;
   }, {} as MemoryUsageReturn);
-};
+}
 
 /**
  * This function is used to display the total memory that the system has. It can output in Gigabyte and Megabyte.
  * @param {boolean?} convertedGB If the returned value should be in Gigabytes or in MB. If set to true, then it will output the Gigabyte value.
  * @default {false} Megabyte format.
- * 
+ *
  * @returns {number} The converted total Memory that is available.
  */
 export function showTotalMemory(convertedGB: boolean = false): number {
   // In GB
-  if (convertedGB) return Math.round(((os.totalmem() / 1024 / 1024) * 100) / 100) / 1000;
-  
+  if (convertedGB)
+    return Math.round(((os.totalmem() / 1024 / 1024) * 100) / 100) / 1000;
+
   // In MB
   return Math.round((os.totalmem() / 1024 / 1024) * 100) / 100;
-};
+}
 
 /* PRIVATE */
 /**
@@ -145,4 +156,4 @@ function _error(coreIndex: number, cores: number): Error {
       cores - 1
     }], since your system has a total of ${cores} cores.`
   );
-};
+}

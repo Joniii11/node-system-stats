@@ -26,17 +26,17 @@ export async function measureCPUMulti(opts: IOptsInternal): Promise<ICallback> {
 
       // do the number crunching below and resolve the promise with the result
       for (let i = 0; i < cpu1.length; i++) {
-        timeUsed1 += cpu1[i].times.user;
-        timeUsed1 += cpu1[i].times.nice;
-        timeUsed1 += cpu1[i].times.sys;
-        timeIdle1 += cpu1[i].times.idle;
+        timeUsed1 += cpu1[i]!.times.user;
+        timeUsed1 += cpu1[i]!.times.nice;
+        timeUsed1 += cpu1[i]!.times.sys;
+        timeIdle1 += cpu1[i]!.times.idle;
       }
 
       for (let i = 0; i < cpu0.length; i++) {
-        timeUsed0 += cpu0[i].times.user;
-        timeUsed0 += cpu0[i].times.nice;
-        timeUsed0 += cpu0[i].times.sys;
-        timeIdle0 += cpu0[i].times.idle;
+        timeUsed0 += cpu0[i]!.times.user;
+        timeUsed0 += cpu0[i]!.times.nice;
+        timeUsed0 += cpu0[i]!.times.sys;
+        timeIdle0 += cpu0[i]!.times.idle;
       }
 
       timeUsed = timeUsed1 - timeUsed0;
@@ -75,15 +75,15 @@ export async function measureCPUSingle(opts: IOptsInternal): Promise<ICallback> 
         let diffSeconds = diff[0] + diff[1] * 1e-9;
 
         //do the number crunching below and return
-        timeUsed1 += cpu1[opts.coreIndex].times.user;
-        timeUsed1 += cpu1[opts.coreIndex].times.nice;
-        timeUsed1 += cpu1[opts.coreIndex].times.sys;
-        timeIdle1 += cpu1[opts.coreIndex].times.idle;
+        timeUsed1 += cpu1[opts.coreIndex]!.times.user;
+        timeUsed1 += cpu1[opts.coreIndex]!.times.nice;
+        timeUsed1 += cpu1[opts.coreIndex]!.times.sys;
+        timeIdle1 += cpu1[opts.coreIndex]!.times.idle;
 
-        timeUsed0 += cpu0[opts.coreIndex].times.user;
-        timeUsed0 += cpu0[opts.coreIndex].times.nice;
-        timeUsed0 += cpu0[opts.coreIndex].times.sys;
-        timeIdle0 += cpu0[opts.coreIndex].times.idle;
+        timeUsed0 += cpu0[opts.coreIndex]!.times.user;
+        timeUsed0 += cpu0[opts.coreIndex]!.times.nice;
+        timeUsed0 += cpu0[opts.coreIndex]!.times.sys;
+        timeIdle0 += cpu0[opts.coreIndex]!.times.idle;
 
         let timeUsed = timeUsed1 - timeUsed0;
         let timeIdle = timeIdle1 - timeIdle0;

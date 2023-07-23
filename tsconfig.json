@@ -1,31 +1,38 @@
-{
+  {
+    "include": ["src"],
     "compilerOptions": {
-      // Modules
-          "module": "CommonJS",
-          "moduleResolution": "Node",
-          "resolveJsonModule": true,
-  
-    "target": "ES2015",
-    "rootDir": "./src/",
-    "outDir": "./dist/",
-    "strict": true,
-    "declaration": true,
-    "removeComments": false,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "sourceMap": false,
-    "baseUrl": "./",
-    "typeRoots": [
-      "./node_modules/@types"
-    ]
-    },
-    "include": [
-      "./src/**/*",
-      "./src/types/types.d.ts"
-    ],
-    "exclude": [
-    "node_modules",
-    "dist",
-    "test"
-    ]
-  }
+        "outDir": "lib",
+        "rootDir": "src",
+        "lib": ["ESNext"],
+        "target": "ESNext",
+        "module": "CommonJS",
+        "moduleResolution": "NodeNext",
+        "declaration": true,
+        "declarationMap": true,
+        "composite": false,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+
+        "allowSyntheticDefaultImports": true,
+        "allowUnreachableCode": false,
+        "allowUnusedLabels": false,
+
+        "noUnusedLocals": true,
+        "noImplicitAny": true,
+        "noImplicitOverride": true,
+        "noImplicitThis": true,
+        "noPropertyAccessFromIndexSignature": false,
+        "noFallthroughCasesInSwitch": true,
+        "noUncheckedIndexedAccess": true,
+        "resolveJsonModule": true,
+        "useUnknownInCatchVariables": false,
+
+        "strict": true,
+        "strictFunctionTypes": true,
+        "strictNullChecks": true,
+        "strictBindCallApply": true,
+        "strictPropertyInitialization": true,
+        "typeRoots": ["src/types", "node_modules/@types"]
+    }
+}

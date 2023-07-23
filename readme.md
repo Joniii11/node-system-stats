@@ -54,10 +54,10 @@ To get all of the cores, you can use this function below. View [here](https://jo
 // TypeScript: import { totalCores } from "node-system-stats"
 const { totalCores } = require("node-system-stats");
 
-console.log(totalCores()); // Output: 8 
+console.log(totalCores); // Output: 8 
                            
 // Note: Threads count as cores too! So if you want to only get the "real" cores use the code snippet below:
-console.log(totalCores()) / 2; // Output: 4
+console.log(totalCores / 2); // Output: 4
 ```
 
 If you want to get the Average CPU Clock speed, then use this function below. View [here](https://joniii11.github.io/node-system-stats/functions/avgClockMHz.html) for more description.
@@ -69,39 +69,7 @@ const { avgClockMHz } = require("node-system-stats");
 console.log(avgClockMHz()); // Output: 3600
 ```
 
-If you want to get only from the core 1 the speed use the snippet below. View [here](https://joniii11.github.io/node-system-stats/functions/clockMHz.html) for more description.
-
-```js
-// TypeScript: import { clockMHz } from "node-system-stats";
-const { clockMHz } = require("node-system-stats");
-
-console.log(clockMHz(1)); // Output: 3600
-```
-
-If you want to get it from all cores modify it like that the code:
-```js
-console.log(clockMHz()); // Output: [ 3600, 3600, 3600, 3600
-                         //           3600, 3600, 3600, 3600 ]
-```
-
-If you want to get the memory Usage, use that Snippet below. View [here](https://joniii11.github.io/node-system-stats/functions/showMemoryUsage.html)
-```js
-// TypeScript: import { showMemoryUsage } from "node-system-stats";
-const { showMemoryUsage } = require("node-system-stats");
-
-console.log(showMemoryUsage()); // Output: 100 MB 
-```
-
-If you want to get your total system memory formatted already. Then this function below you will help you alot. You can find the Documentation for this function [here](https://joniii11.github.io/node-system-stats/functions/showTotalMemory.html)
-```js
-// TypeScript: import { showTotalMemory } from "node-system-stats";
-const { showTotalMemory } = require("node-system-stats");
-
-console.log(showTotalMemory()); // Output: 16270.52 and that stands for 16 GB of memory.
-
-// If you want to get the Total Memory in Gigabyte use it like that below:
-console.log(showTotalMemory(true)); // Output: 16.271, and that stands for 16 GB of memory aswell.
-```
+**Note:** To see every function, please take a look at the [documentation](https://joniii11.github.io/node-system-stats/modules.html).
 
 ## Contributing
 If you wish to contribute to the Node-System-Stats codebase or documentation, feel free to fork the repository and submit a

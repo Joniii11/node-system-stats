@@ -32,7 +32,7 @@
     "speed",
     "memory"
   ],
-  "readmeFilename": "readme.md",
+  "readmeFilename": "README.md",
   "devDependencies": {
     "@types/node": "^20.4.2"
   },

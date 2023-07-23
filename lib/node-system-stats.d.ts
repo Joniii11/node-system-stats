@@ -58,7 +58,26 @@ export interface MemoryUsageReturn {
     arrayBuffers: number;
 }
 
-export type clockMHzType = number;
+interface pJsonRepo {
+    type: string;
+    url: string;
+}
+
+export interface pJSON {
+    name: string;
+    version: string;
+    private: boolean;
+    description: string;
+    main: string;
+    types: string;
+    files: string[];
+    repository: pJsonRepo;
+    bugs: pJsonRepo;
+    keywords: string[];
+    readmeFilename: string;
+    devDependencies: Object;
+    license: string;
+}
 
 /**
  * This function measures the CPU usage
@@ -67,16 +86,23 @@ export type clockMHzType = number;
  */
 export declare function usagePercent(optsInput?: IOptsInput): Promise<ICallback>;
 /**
- * This function shows all Cores that are available in your system
  * @returns {number} The number of total cores in the system.
  */
-export declare function totalCores(): number;
+export declare const totalCores: number;
+/**
+ * @returns {string} The name of the cpu in your system.
+ */
+export declare const cpuModel: string;
+/**
+ * @returns {string} Returns the current version of the package
+ */
+export declare const version: string;
 /**
  * This function returns the speed of all cores or only just the selected core.
- * @param {clockMHzType} coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
+ * @param {number} coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
  * @returns {number | number[]} A number of the speed of the core OR a array with all of the cores speeds.
  */
-export declare function clockMHz(coreIndex?: clockMHzType): number | number[];
+export declare function clockMHz(coreIndex?: number): number | number[];
 /**
  * This function shows the average Clock Frequency from all of the cores.
  * @returns {number} returns a number with the average Clock MHz over all cores

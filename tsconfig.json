@@ -1,38 +1,18 @@
-  {
-    "include": ["src"],
-    "compilerOptions": {
-        "outDir": "lib",
-        "rootDir": "src",
-        "lib": ["ESNext"],
-        "target": "ESNext",
-        "module": "CommonJS",
-        "moduleResolution": "NodeNext",
-        "declaration": true,
-        "declarationMap": true,
-        "composite": false,
-        "esModuleInterop": true,
-        "skipLibCheck": true,
-        "forceConsistentCasingInFileNames": true,
-
-        "allowSyntheticDefaultImports": true,
-        "allowUnreachableCode": false,
-        "allowUnusedLabels": false,
-
-        "noUnusedLocals": true,
-        "noImplicitAny": true,
-        "noImplicitOverride": true,
-        "noImplicitThis": true,
-        "noPropertyAccessFromIndexSignature": false,
-        "noFallthroughCasesInSwitch": true,
-        "noUncheckedIndexedAccess": true,
-        "resolveJsonModule": true,
-        "useUnknownInCatchVariables": false,
-
-        "strict": true,
-        "strictFunctionTypes": true,
-        "strictNullChecks": true,
-        "strictBindCallApply": true,
-        "strictPropertyInitialization": true,
-        "typeRoots": ["src/types", "node_modules/@types"]
-    }
+{
+  "compilerOptions": {
+    "lib": ["ESNext"],
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "target": "ESNext",
+    "outDir": "./dist",  
+    "sourceMap": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true,
+    "skipDefaultLibCheck": true,
+    "declaration": true,
+    "strict": true,
+  }
 }

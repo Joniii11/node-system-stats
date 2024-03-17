@@ -60,6 +60,21 @@ export const cpuModel = os.cpus()[0]!.model;
 export const version = packageJsonFile.version;
 
 /**
+ * @returns {string} Returns the name of the package
+ */
+export const name = packageJsonFile.name;
+
+/**
+ * @returns {string} Returns the processes platform
+ */
+export const platform = process.platform;
+
+/**
+ * @returns {number} The processes PID
+ */
+export const PID = process.pid;
+
+/**
  * This function returns the speed of all cores or only just the selected core.
  * @param {number} coreIndex The index of the core. It begins with 0. If not specified, it will return an array with all of the cores
  * @returns {number | number[]} A number of the speed of the core OR a array with all of the cores speeds.
@@ -140,6 +155,22 @@ export function showTotalMemory(convertedGB: boolean = false): number {
   // In MB
   return Math.round((os.totalmem() / 1024 / 1024) * 100) / 100;
 }
+
+/**
+ * This function is used to display the free memory that the system has. It can output in Gigabyte and Megabyte.
+ * @param {boolean?} convertedGB If the returned value should be in Gigabytes or in MB. If set to true, then it will output the Gigabyte value.
+ * @default {false} Megabyte format.
+ *
+ * @returns {number} The converted free Memory that is available.
+ */
+export function showFreeMemory(convertedGB: boolean = false): number {
+  // In GB
+  if (convertedGB)
+    return Math.round(((os.freemem() / 1024 / 1024) * 100) / 100) / 1000;
+
+  // In MB
+  return Math.round((os.freemem() / 1024 / 1024) * 100) / 100;
+};
 
 /* PRIVATE */
 /**

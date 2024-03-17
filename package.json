@@ -4,10 +4,24 @@
   "private": false,
   "description": "This package shows you the system statistics, with wonderful type declartions.",
   "main": "lib/index.js",
+  "module": "dist/index.mjs",
   "types": "lib/index.d.ts",
   "files": [
     "./lib"
   ],
+  "exports": {
+    ".": {
+      "import": "./lib/index.mjs",
+      "require": "./lib/index.js"
+    }
+  },
+  "scripts": {
+    "build": "tsc && npm run build:esm",
+    "build:esm": "gen-esm-wrapper lib/index.js lib/index.mjs",
+    "build:docs": "npx typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-missing-exports --out docs ./src/index.ts",
+    "build:docs.json": "npx typedoc --json docs/docs.json src/. --entryPointStrategy expand",
+    "prepublishOnly": "npm run build:esm"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/Joniii11/node-system-stats"
@@ -15,6 +29,9 @@
   "bugs": {
     "type": "git",
     "url": "https://github.com/Joniii11/node-system-stats/issues"
+  },
+  "engines": {
+    "node": ">=16.9.0"
   },
   "keywords": [
     "systemstats",
@@ -34,7 +51,11 @@
   ],
   "readmeFilename": "README.md",
   "devDependencies": {
-    "@types/node": "^20.4.2"
+    "@types/node": "^20.11.28",
+    "gen-esm-wrapper": "^1.1.3",
+    "typedoc": "^0.25.12",
+    "typedoc-plugin-markdown": "^3.17.1",
+    "typedoc-plugin-missing-exports": "^2.2.0"
   },
   "license": "MIT"
 }

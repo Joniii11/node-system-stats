@@ -1,6 +1,6 @@
 {
   "name": "node-system-stats",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "private": false,
   "description": "Comprehensive library for monitoring system statistics including CPU, memory, disk, network, battery, and process information with time-series monitoring",
   "main": "./lib/index.js",
@@ -21,7 +21,7 @@
     "clean": "rimraf lib",
     "build": "npm run clean && tsc && npm run build:esm",
     "build:esm": "npm run create-wrappers",
-    "create-wrappers": "gen-esm-wrapper lib/index.js lib/index.mjs && gen-esm-wrapper lib/modules/cpu.js lib/modules/cpu.mjs && gen-esm-wrapper lib/modules/memory.js lib/modules/memory.mjs && gen-esm-wrapper lib/modules/disk.js lib/modules/disk.mjs && gen-esm-wrapper lib/modules/network.js lib/modules/network.mjs && gen-esm-wrapper lib/modules/process.js lib/modules/process.mjs && gen-esm-wrapper lib/modules/battery.js lib/modules/battery.mjs && gen-esm-wrapper lib/modules/monitor.js lib/modules/monitor.mjs",
+    "create-wrappers": "gen-esm-wrapper lib/index.js lib/index.mjs",
     "build:docs": "npx typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-missing-exports --out docs ./src/index.ts",
     "build:docs.json": "npx typedoc --json docs/docs.json src/. --entryPointStrategy expand",
     "prepublishOnly": "npm run build"

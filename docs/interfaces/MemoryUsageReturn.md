@@ -22,7 +22,7 @@
 
 #### Defined in
 
-src/types/types.d.ts:58
+src/types/types.ts:58
 
 ___
 
@@ -34,7 +34,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:53
+src/types/types.ts:53
 
 ___
 
@@ -46,7 +46,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:43
+src/types/types.ts:43
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:48
+src/types/types.ts:48
 
 ___
 
@@ -70,4 +70,4 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:38
+src/types/types.ts:38

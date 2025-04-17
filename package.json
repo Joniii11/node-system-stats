@@ -1,6 +1,6 @@
 {
   "name": "node-system-stats",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "private": false,
   "description": "Comprehensive library for monitoring system statistics including CPU, memory, disk, network, battery, and process information with time-series monitoring",
   "main": "./lib/index.js",

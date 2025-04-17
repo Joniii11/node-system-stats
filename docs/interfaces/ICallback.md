@@ -19,7 +19,7 @@ The percentage of the CPU Utilization of the process.
 
 #### Defined in
 
-src/types/types.d.ts:26
+src/types/types.ts:26
 
 ___
 
@@ -31,4 +31,4 @@ The time of how long it measured the CPU Utlization of the process.
 
 #### Defined in
 
-src/types/types.d.ts:31
+src/types/types.ts:31

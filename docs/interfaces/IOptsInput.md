@@ -26,7 +26,7 @@ Can use any integer `coreIndex` such that `0 >= coreIndex < memStat.totalCores()
 
 #### Defined in
 
-src/types/types.d.ts:8
+src/types/types.ts:8
 
 ___
 
@@ -44,4 +44,4 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:14
+src/types/types.ts:14

@@ -24,11 +24,11 @@
 
 ### bugs
 
-• **bugs**: [`pJsonRepo`](pJsonRepo.md)
+• **bugs**: [`pJsonRepo`](internal_.pJsonRepo.md)
 
 #### Defined in
 
-src/types/types.d.ts:75
+src/types/types.ts:281
 
 ___
 
@@ -38,7 +38,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:70
+src/types/types.ts:276
 
 ___
 
@@ -48,7 +48,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:78
+src/types/types.ts:284
 
 ___
 
@@ -58,7 +58,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:73
+src/types/types.ts:279
 
 ___
 
@@ -68,7 +68,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:76
+src/types/types.ts:282
 
 ___
 
@@ -78,7 +78,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:79
+src/types/types.ts:285
 
 ___
 
@@ -88,7 +88,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:71
+src/types/types.ts:277
 
 ___
 
@@ -98,7 +98,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:67
+src/types/types.ts:273
 
 ___
 
@@ -108,7 +108,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:69
+src/types/types.ts:275
 
 ___
 
@@ -118,17 +118,17 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:77
+src/types/types.ts:283
 
 ___
 
 ### repository
 
-• **repository**: [`pJsonRepo`](pJsonRepo.md)
+• **repository**: [`pJsonRepo`](internal_.pJsonRepo.md)
 
 #### Defined in
 
-src/types/types.d.ts:74
+src/types/types.ts:280
 
 ___
 
@@ -138,7 +138,7 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:72
+src/types/types.ts:278
 
 ___
 
@@ -148,4 +148,4 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:68
+src/types/types.ts:274

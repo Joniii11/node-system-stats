@@ -25,6 +25,7 @@ export async function getTopProcesses(limit: number = 10, sortBy: 'cpu' | 'memor
       // Skip the header line
       const processes: ProcessInfo[] = [];
       const totalMemory = os.totalmem();
+      const numCores = os.cpus().length;
       
       for (let i = 1; i < lines.length; i++) {
         const parts = lines[i].split(',');
@@ -38,8 +39,8 @@ export async function getTopProcesses(limit: number = 10, sortBy: 'cpu' | 'memor
           const kernelTime = parseInt(parts[5], 10);
           
           const totalTime = userTime + kernelTime;
-          // This isn't a perfect measure of CPU % but gives a relative value
-          const cpuPercent = totalTime / 10000; 
+          const uptime = os.uptime();
+          const cpuPercent = (totalTime / 10000000) / uptime * 100 / numCores;
           
           processes.push({
             pid,
@@ -149,7 +150,9 @@ export async function getProcessById(pid: number): Promise<ProcessInfo | null> {
         const kernelTime = parseInt(parts[5], 10);
         
         const totalTime = userTime + kernelTime;
-        const cpuPercent = totalTime / 10000;
+        const numCores = os.cpus().length;
+        const uptime = os.uptime();
+        const cpuPercent = (totalTime / 10000000) / uptime * 100 / numCores;
         
         return {
           pid,

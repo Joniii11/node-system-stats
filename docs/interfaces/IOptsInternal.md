@@ -17,7 +17,7 @@
 
 #### Defined in
 
-src/types/types.d.ts:18
+src/types/types.ts:18
 
 ___
 
@@ -27,4 +27,4 @@ ___
 
 #### Defined in
 
-src/types/types.d.ts:19
+src/types/types.ts:19

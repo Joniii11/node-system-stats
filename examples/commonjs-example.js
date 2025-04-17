@@ -1,7 +1,7 @@
 // Example of using the library with CommonJS
 
-// For local development, use direct path to the built files
-const systemStats = require('../lib/cjs/index.js');
+// For local development with the new structure
+const systemStats = require('../lib/index.js');
 
 // When published as a package, you would use:
 // const systemStats = require('node-system-stats');
@@ -18,11 +18,9 @@ const {
   getLoadAverage,
   getCpuTemperature,
   showTotalMemory,
-  showFreeMemory
+  showFreeMemory,
+  SystemInfoMonitor
 } = systemStats;
-
-// For accessing the SystemInfoMonitor, which might be nested
-const { SystemInfoMonitor } = systemStats;
 
 async function main() {
   console.log('=== Node System Stats - CommonJS Example ===');

@@ -1,7 +1,10 @@
 // Example of using the library with ES modules
 
-// Method 1: Import the default export from the local library
-import nodeSystemStats from '../lib/esm/index.js';
+// For local development with the new structure
+import nodeSystemStats from '../lib/index.mjs';
+
+// When published as a package, you would use:
+// import nodeSystemStats from 'node-system-stats';
 
 // Destructure what we need from it
 const {
@@ -17,11 +20,8 @@ const {
   getBatteryInfo,
   getTopProcesses,
   SystemMonitor,
-  NetworkMonitor
+  getLoadAverage
 } = nodeSystemStats;
-
-// When using as an installed package, you would use:
-// import nodeSystemStats from 'node-system-stats';
 
 async function main() {
   console.log('=== Node System Stats - ESM Example ===');

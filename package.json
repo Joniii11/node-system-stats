@@ -1,26 +1,65 @@
 {
   "name": "node-system-stats",
-  "version": "1.3.0",
+  "version": "2.0.1",
   "private": false,
-  "description": "This package shows you the system statistics, with wonderful type declartions.",
-  "main": "lib/index.js",
-  "module": "dist/index.mjs",
-  "types": "lib/index.d.ts",
+  "description": "Comprehensive library for monitoring system statistics including CPU, memory, disk, network, battery, and process information with time-series monitoring",
+  "main": "./lib/cjs/index.js",
+  "module": "./lib/esm/index.js",
+  "types": "./lib/types/index.d.ts",
   "files": [
-    "./lib"
+    "lib/"
   ],
   "exports": {
     ".": {
-      "import": "./lib/index.mjs",
-      "require": "./lib/index.js"
+      "import": "./lib/esm/index.js",
+      "require": "./lib/cjs/index.js",
+      "types": "./lib/types/index.d.ts"
+    },
+    "./cpu": {
+      "import": "./lib/esm/modules/cpu.js",
+      "require": "./lib/cjs/modules/cpu.js",
+      "types": "./lib/types/modules/cpu.d.ts"
+    },
+    "./memory": {
+      "import": "./lib/esm/modules/memory.js",
+      "require": "./lib/cjs/modules/memory.js",
+      "types": "./lib/types/modules/memory.d.ts"
+    },
+    "./disk": {
+      "import": "./lib/esm/modules/disk.js",
+      "require": "./lib/cjs/modules/disk.js",
+      "types": "./lib/types/modules/disk.d.ts"
+    },
+    "./network": {
+      "import": "./lib/esm/modules/network.js",
+      "require": "./lib/cjs/modules/network.js",
+      "types": "./lib/types/modules/network.d.ts"
+    },
+    "./process": {
+      "import": "./lib/esm/modules/process.js",
+      "require": "./lib/cjs/modules/process.js",
+      "types": "./lib/types/modules/process.d.ts"
+    },
+    "./battery": {
+      "import": "./lib/esm/modules/battery.js",
+      "require": "./lib/cjs/modules/battery.js",
+      "types": "./lib/types/modules/battery.d.ts"
+    },
+    "./monitor": {
+      "import": "./lib/esm/modules/monitor.js",
+      "require": "./lib/cjs/modules/monitor.js",
+      "types": "./lib/types/modules/monitor.d.ts"
     }
   },
   "scripts": {
-    "build": "tsc && npm run build:esm",
-    "build:esm": "gen-esm-wrapper lib/index.js lib/index.mjs",
+    "clean": "rimraf lib",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:types",
+    "build:cjs": "tsc --project tsconfig.cjs.json",
+    "build:esm": "tsc --project tsconfig.esm.json",
+    "build:types": "tsc --project tsconfig.types.json",
     "build:docs": "npx typedoc --plugin typedoc-plugin-markdown --plugin typedoc-plugin-missing-exports --out docs ./src/index.ts",
     "build:docs.json": "npx typedoc --json docs/docs.json src/. --entryPointStrategy expand",
-    "prepublishOnly": "npm run build:esm"
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -47,15 +86,28 @@
     "mhz",
     "clock",
     "speed",
-    "memory"
+    "memory",
+    "monitoring",
+    "disk",
+    "drive",
+    "network",
+    "bandwidth",
+    "traffic",
+    "process",
+    "battery",
+    "temperature",
+    "system-monitor",
+    "diagnostics",
+    "performance"
   ],
   "readmeFilename": "README.md",
   "devDependencies": {
     "@types/node": "^20.11.28",
-    "gen-esm-wrapper": "^1.1.3",
+    "rimraf": "^5.0.5",
     "typedoc": "^0.25.12",
     "typedoc-plugin-markdown": "^3.17.1",
-    "typedoc-plugin-missing-exports": "^2.2.0"
+    "typedoc-plugin-missing-exports": "^2.2.0",
+    "typescript": "^5.2.2"
   },
   "license": "MIT"
 }
